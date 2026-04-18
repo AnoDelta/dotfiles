@@ -65,6 +65,12 @@ require("lazy").setup({
 			vim.lsp.enable({
 				"pyright", "clangd", "cmake", "rust_analyzer", "ts_ls", "intelephense", "lua_ls", "html", "tailwindcss", "omnisharp", "bashls", "yamlls", "jsonls", "taplo"
 			})
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+				vim.lsp.handlers.hover, {
+					border = "rounded",
+				}
+			)
 		end,
 	},
 	{
@@ -143,6 +149,21 @@ require("lazy").setup({
 					delete		 = { text = "-" },
 					topdelete	 = { text = "‾" },
 					changedelete = { text = "~" },
+				},
+			})
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("noice").setup({
+				lsp = {
+					hover = { enabled = false },
+					signature = { enabled = false },
 				},
 			})
 		end,
