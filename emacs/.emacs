@@ -19,7 +19,7 @@
 (package-initialize)
 
 ;; auto install packages for when I move between computers and distros
-(defvar my-packages '(evil magit rust-mode dashboard dracula-theme doom-modeline which-key ivy counsel hl-todo rainbow-delimiters company diff-hl pdf-tools markdown-mode))
+(defvar my-packages '(evil magit rust-mode dashboard dracula-theme doom-modeline which-key ivy counsel hl-todo rainbow-delimiters company diff-hl pdf-tools markdown-mode lsp-ui lua-mode web-mode php-mode emmet-mode rainbow-mode))
 
 (unless (cl-every #'package-installed-p my-packages)
   (package-refresh-contents)
@@ -46,13 +46,34 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(require 'rust-mode)
-(require 'eglot)
 (require 'which-key)
 
-(add-hook 'rust-mode-hook #'eglot-ensure)
+;; Language modes
+(require 'rust-mode)
+(require 'lua-mode)
 
+;; LSP
+(require 'eglot)
+(require 'lsp-ui)
+(add-hook 'eglot-managed-mode-hook #'lsp-ui-mode)
+
+;; Language hooks
+(add-hook 'rust-mode-hook #'eglot-ensure)
 (setq rust-format-on-save t)
+(add-hook 'python-mode-hook #'eglot-ensure)
+(add-hook 'c-mode-hook #'eglot-ensure)
+(add-hook 'c++-mode-hook #'eglot-ensure)
+(add-hook 'js-mode-hook #'eglot-ensure)
+(add-hook 'lua-mode-hook #'eglot-ensure)
+(add-hook 'php-mode-hook #'eglot-ensure)
+(add-hook 'web-mode-hook #'eglot-ensure)
+(add-hook 'css-mode-hook #'eglot-ensure)
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+	       '(php-mode . ("intelephense" "--stdio")))
+  (add-to-list 'eglot-server-programs
+	       '(web-mode . ("tailwindcss-language-server" "--stdio"))))
 
 ;; ivy/counsel
 (require 'ivy)
@@ -104,12 +125,6 @@
 (setq c-default-style "k&r"
 	  c-basic-offset 4)
 
-;; web development packages
-(defvar my-web-packages '(web-mode php-mode emmet-mode rainbow-mode))
-(unless (cl-every #'package-installed-p my-web-packages)
-  (package-refresh-contents)
-  (mapc #'package-install my-web-packages))
-
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -120,16 +135,6 @@
 (require 'rainbow-mode)
 (add-hook 'web-mode-hook #'rainbow-mode)
 (add-hook 'css-mode-hook #'rainbow-mode)
-
-;; eglot for php and web
-(add-hook 'php-mode-hook #'eglot-ensure)
-(add-hook 'web-mode-hook #'eglot-ensure)
-(add-hook 'css-mode-hook #'eglot-ensure)
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-	       '(php-mode . ("intelephense" "--stdio")))
-  (add-to-list 'eglot-server-programs
-	       '(web-mode . ("tailwindcss-language-server" "--stdio"))))
 
 ;; pdf support
 (pdf-tools-install)
