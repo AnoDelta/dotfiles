@@ -1,0 +1,16 @@
+/* Tighten Thunar sidebar padding to match Yazi's density */
+.sidebar row {
+    padding: 4px 8px;
+}
+
+/* Hide the ugly GTK headerbar border when Thunar is tiled in DWM */
+headerbar {
+    border: none;
+    box-shadow: none;
+}
+
+/* Make selection color match Dracula purple more precisely */
+*:selected {
+    background-color: #bd93f9;
+    color: #282a36;
+}

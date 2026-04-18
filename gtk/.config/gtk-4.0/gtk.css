@@ -1,0 +1,5 @@
+/* Same treatment for GTK4 apps */
+*:selected {
+    background-color: #bd93f9;
+    color: #282a36;
+}
