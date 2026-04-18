@@ -19,7 +19,7 @@
 (package-initialize)
 
 ;; auto install packages for when I move between computers and distros
-(defvar my-packages '(evil magit rust-mode dashboard dracula-theme doom-modeline which-key ivy counsel hl-todo rainbow-delimiters company diff-hl pdf-tools))
+(defvar my-packages '(evil magit rust-mode dashboard dracula-theme doom-modeline which-key ivy counsel hl-todo rainbow-delimiters company diff-hl pdf-tools markdown-mode))
 
 (unless (cl-every #'package-installed-p my-packages)
   (package-refresh-contents)
