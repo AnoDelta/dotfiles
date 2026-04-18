@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+xrandr --output HDMI-1-0 --mode 1920x1080 --rate 75 --right-of eDP-1
+feh --bg-fill $HOME/customization\ stuff/backgrounds/tetoX4.png --bg-fill $HOME/customization\ stuff/backgrounds/tetoX4.png
+
+exec dbus-run-session -- sh -c '
+
+     slstatus &
+     picom --backend xrender --vsync &
+     dunst &
+     gentoo-pipewire-launcher restart &
+     emacs --daemon &
+
+     exec dwm
+
+'

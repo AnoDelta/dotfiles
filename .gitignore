@@ -1,0 +1,75 @@
+#emacs junk
+*~
+\#*\#
+.emacs.d/
+
+#sensitive stuff
+.gitconfig
+.ssh/
+.gnupg/
+
+# Build artifacts
+*.o
+*.out
+dwm
+st
+slstatus
+dmenu
+dwm-*.tar.gz
+
+# Editor/IDE cruft
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Sensitive stuff — NEVER commit
+**/secrets
+**/*.key
+**/*.pem
+**/id_rsa
+**/id_ed25519
+.ssh/
+.gnupg/
+.password-store/
+**/.netrc
+.aws/credentials
+
+# Browser profiles, caches
+.mozilla/
+.cache/
+
+# Emacs auto-save / backup
+*~
+\#*\#
+.\#*
+auto-save-list/
+
+# History files
+.bash_history
+.python_history
+.zsh_history
+.lesshst
+.wget-hststs
+
+# Gentoo-specific
+*.ebuild.backup
+
+# Patch rejection files (from applying dwm patches)
+*.rej
+*.orig
+
+# Local overrides (not committed, per-machine)
+*.local
+local.conf
+.envrc
+
+# misc
+*.bak
+*.rej
+*.orig

@@ -1,0 +1,31 @@
+[global]
+	follow = keyboard      # follows wherever mouse is
+    font = "JetBrainsMono Nerd Font 10"
+    frame_width = 2
+    frame_color = "#89b4fa"
+    separator_color = frame
+    corner_radius = 8
+    padding = 12
+    horizontal_padding = 12
+
+[urgency_low]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#0000ff"
+    timeout = 5
+
+[urgency_normal]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#ff0000"
+    timeout = 8
+
+[urgency_critical]
+    background = "#1e1e2e"
+    foreground = "#f38ba8"
+    frame_color = "#ffff00"
+    timeout = 0
+
+[play_sound]
+    summary = "*"
+    script = ~/.local/bin/notify-sound
